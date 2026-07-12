@@ -58,6 +58,7 @@ export default function App() {
         <nav style={css("position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; gap:24px; padding:16px 40px; background:rgba(7,11,20,0.82); border-bottom:1px solid rgba(255,255,255,0.06); backdrop-filter:blur(12px);")}>
           <a href="#" style={css("display:flex; align-items:center; gap:12px; flex-shrink:0;")}>
             <svg viewBox="0 0 200 240" style={css("color:#FFFFFF; width:34px; height:41px; flex-shrink:0;")}><use href="#rmark"></use></svg>
+            <span style={css("font-size:19px; font-weight:700; color:#FFFFFF; letter-spacing:-0.01em;")}>RICO GO</span>
           </a>
           <div style={css("display:flex; align-items:center; gap:32px; font-size:15px; color:#AEB6C4;")}>
             <a href="#" style={css("color:#E6E9EF;")}>الرئيسية</a>
@@ -321,6 +322,7 @@ export default function App() {
             <div>
               <div style={css("display:flex; align-items:center; gap:12px; margin-bottom:16px;")}>
                 <svg viewBox="0 0 200 240" style={css("color:#FFFFFF; width:32px; height:38px;")}><use href="#rmark"></use></svg>
+                <span style={css("font-size:18px; font-weight:700; color:#FFFFFF; letter-spacing:-0.01em;")}>RICO GO</span>
               </div>
               <p style={css("color:#8A93A5; font-size:14px; line-height:1.7; margin:0; max-width:260px;")}>ذكاء ينفّذ طلبك بالكامل. اطلب من ريكو وهو ينفّذ عنك — في كل مدن السعودية.</p>
             </div>
