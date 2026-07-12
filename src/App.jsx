@@ -18,6 +18,7 @@ function css(str) {
 export default function App() {
   const [phone, setPhone] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const year = new Date().getFullYear();
 
   const onPhone = (e) => setPhone(e.target.value);
@@ -41,6 +42,84 @@ export default function App() {
         .rico-go ::selection { background: rgba(34,197,94,0.3); }
         @keyframes ricoFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
         @keyframes ricoPulse { 0%,100% { opacity:0.5; transform:scale(1); } 50% { opacity:0.9; transform:scale(1.06); } }
+
+        /* ---------- Responsive ---------- */
+        .rg-nav-toggle { display: none; }
+
+        @media (max-width: 1279px) {
+          .rico-go section, .rico-go > nav, .rico-go footer > div {
+            padding-left: 32px !important;
+            padding-right: 32px !important;
+          }
+        }
+
+        @media (max-width: 1023px) {
+          .rg-nav-links { display: none !important; }
+          .rg-nav-toggle {
+            display: flex; align-items: center; justify-content: center;
+            width: 44px; height: 44px; border-radius: 10px;
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+            color: #E6E9EF; cursor: pointer; flex-shrink: 0;
+          }
+          .rg-nav-links.rg-open {
+            display: flex !important;
+            position: absolute; top: 100%; left: 0; right: 0;
+            flex-direction: column !important;
+            align-items: stretch !important;
+            gap: 2px !important;
+            background: #0B111C;
+            padding: 10px 24px 18px !important;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 16px 30px rgba(0,0,0,0.35);
+          }
+          .rg-nav-links.rg-open a { padding: 12px 4px !important; font-size: 16px !important; }
+
+          .rg-hero-grid, .rg-demo-grid, .rg-showcase-grid, .rg-payments-grid, .rg-about-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .rg-how-grid, .rg-capabilities-grid { grid-template-columns: repeat(3, 1fr) !important; }
+          .rg-pricing-grid { grid-template-columns: 1fr !important; max-width: 460px; margin-left: auto !important; margin-right: auto !important; }
+          .rg-footer-grid { grid-template-columns: 1fr 1fr !important; }
+          .rg-hero-visual { min-height: 0 !important; margin-top: 8px; }
+        }
+
+        @media (max-width: 767px) {
+          .rico-go section, .rico-go > nav, .rico-go footer > div {
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+          }
+          .rg-hero-h1 { font-size: 34px !important; line-height: 1.25 !important; }
+          .rg-section-h2 { font-size: 25px !important; line-height: 1.3 !important; }
+          .rg-how-grid, .rg-capabilities-grid { grid-template-columns: 1fr 1fr !important; }
+          .rg-stats-grid { grid-template-columns: 1fr !important; }
+          .rg-footer-grid { grid-template-columns: 1fr !important; }
+          .rg-about-stats { grid-template-columns: 1fr 1fr !important; }
+
+          .rg-showcase-phones { flex-direction: column !important; align-items: center !important; }
+          .rg-showcase-phone {
+            width: 100% !important; max-width: 230px !important;
+            height: auto !important; aspect-ratio: 210 / 430 !important;
+            margin-top: 0 !important;
+          }
+          .rg-demo-phone {
+            width: 100% !important; max-width: 300px !important;
+            height: auto !important; aspect-ratio: 300 / 600 !important;
+          }
+          .rg-hero-visual-inner {
+            width: 100% !important; max-width: 300px !important;
+            height: auto !important; aspect-ratio: 330 / 400 !important;
+          }
+          .rg-waitlist-row { flex-direction: column !important; align-items: stretch !important; }
+          .rg-waitlist-row input, .rg-waitlist-row button { width: 100% !important; }
+          .rg-partners { flex-direction: column !important; align-items: flex-start !important; }
+          .rg-partners a { width: 100%; text-align: center; }
+        }
+
+        @media (max-width: 479px) {
+          .rg-how-grid, .rg-capabilities-grid { grid-template-columns: 1fr !important; }
+          .rg-hero-h1 { font-size: 28px !important; }
+          .rg-about-stats { grid-template-columns: 1fr 1fr !important; }
+        }
       `}</style>
 
       <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden="true">
@@ -55,28 +134,46 @@ export default function App() {
       <main className="rico-go" dir="rtl" style={css("width:100%; overflow-x:hidden; background:radial-gradient(1200px 600px at 80% -5%, rgba(34,197,94,0.10), transparent 60%), radial-gradient(900px 500px at 5% 10%, rgba(201,162,74,0.06), transparent 55%), #070B14;")}>
 
         {/* NAV */}
-        <nav style={css("position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; gap:24px; padding:16px 40px; background:rgba(7,11,20,0.82); border-bottom:1px solid rgba(255,255,255,0.06); backdrop-filter:blur(12px);")}>
+        <nav className="rg-nav" style={css("position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; gap:24px; padding:16px 40px; background:rgba(7,11,20,0.82); border-bottom:1px solid rgba(255,255,255,0.06); backdrop-filter:blur(12px);")}>
           <a href="#" style={css("display:flex; align-items:center; gap:12px; flex-shrink:0;")}>
             <svg viewBox="0 0 200 240" style={css("color:#FFFFFF; width:34px; height:41px; flex-shrink:0;")}><use href="#rmark"></use></svg>
             <span style={css("font-size:19px; font-weight:700; color:#FFFFFF; letter-spacing:-0.01em;")}>RICO GO</span>
           </a>
-          <div style={css("display:flex; align-items:center; gap:32px; font-size:15px; color:#AEB6C4;")}>
-            <a href="#" style={css("color:#E6E9EF;")}>الرئيسية</a>
-            <a href="#how-it-works" style={css("color:#AEB6C4;")}>كيف يعمل</a>
-            <a href="#pricing" style={css("color:#AEB6C4;")}>الأسعار</a>
-            <a href="#about" style={css("color:#AEB6C4;")}>عن ريكو</a>
+          <div className={`rg-nav-links${menuOpen ? ' rg-open' : ''}`} style={css("display:flex; align-items:center; gap:32px; font-size:15px; color:#AEB6C4;")}>
+            <a href="#" onClick={() => setMenuOpen(false)} style={css("color:#E6E9EF;")}>الرئيسية</a>
+            <a href="#how-it-works" onClick={() => setMenuOpen(false)} style={css("color:#AEB6C4;")}>كيف يعمل</a>
+            <a href="#pricing" onClick={() => setMenuOpen(false)} style={css("color:#AEB6C4;")}>الأسعار</a>
+            <a href="#about" onClick={() => setMenuOpen(false)} style={css("color:#AEB6C4;")}>عن ريكو</a>
           </div>
-          <a href="#waitlist" style={css("background:#22C55E; color:#04140A; font-weight:600; padding:11px 22px; border-radius:11px; font-size:15px; box-shadow:0 8px 24px rgba(34,197,94,0.25);")}>جرّب ريكو الآن</a>
+          <div style={css("display:flex; align-items:center; gap:12px; flex-shrink:0;")}>
+            <a href="#waitlist" style={css("background:#22C55E; color:#04140A; font-weight:600; padding:11px 22px; border-radius:11px; font-size:15px; box-shadow:0 8px 24px rgba(34,197,94,0.25); flex-shrink:0;")}>جرّب ريكو الآن</a>
+            <button
+              type="button"
+              aria-label="فتح القائمة"
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((v) => !v)}
+              className="rg-nav-toggle"
+              style={css("background:transparent; border:none; padding:0;")}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                {menuOpen ? (
+                  <path d="M6 6 L18 18 M18 6 L6 18"></path>
+                ) : (
+                  <path d="M4 7h16 M4 12h16 M4 17h16"></path>
+                )}
+              </svg>
+            </button>
+          </div>
         </nav>
 
         {/* HERO */}
-        <section style={css("max-width:1200px; margin:0 auto; padding:72px 40px 40px; display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center;")}>
+        <section className="rg-hero-grid" style={css("max-width:1200px; margin:0 auto; padding:72px 40px 40px; display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center;")}>
           <div>
             <div style={css("display:inline-flex; align-items:center; gap:8px; padding:7px 14px; border:1px solid rgba(46,229,124,0.3); border-radius:999px; background:rgba(34,197,94,0.08); font-size:13px; color:#6BF3A5; margin-bottom:24px;")}>
               <span style={css("width:7px; height:7px; border-radius:50%; background:#2EE57C; box-shadow:0 0 10px #2EE57C;")}></span>
               مساعد ذكي للتجارة في السعودية
             </div>
-            <h1 style={css("font-size:52px; line-height:1.18; font-weight:700; color:#FFFFFF; margin:0 0 18px; letter-spacing:-0.01em;")}>اطلب من ريكو..<br/>وهو <span style={css("color:#2EE57C;")}>ينفّذ</span> عنك</h1>
+            <h1 className="rg-hero-h1" style={css("font-size:52px; line-height:1.18; font-weight:700; color:#FFFFFF; margin:0 0 18px; letter-spacing:-0.01em;")}>اطلب من ريكو..<br/>وهو <span style={css("color:#2EE57C;")}>ينفّذ</span> عنك</h1>
             <p style={css("font-size:19px; line-height:1.7; color:#AEB6C4; margin:0 0 28px; max-width:520px;")}>قل له ما تريد… وريكو يفهم ويبحث ويقارن ويطلب ويدفع ويتابع — كل شيء عنك، بدون أي ضغط منك.</p>
             <div style={css("display:flex; gap:20px; flex-wrap:wrap; margin-bottom:30px;")}>
               <div style={css("display:flex; align-items:center; gap:8px; color:#D6DBE4; font-size:15px;")}><span style={css("color:#2EE57C;")}>✓</span> بدون ضغط</div>
@@ -89,9 +186,9 @@ export default function App() {
             </div>
           </div>
 
-          <div style={css("position:relative; display:flex; align-items:center; justify-content:center; min-height:440px;")}>
+          <div className="rg-hero-visual" style={css("position:relative; display:flex; align-items:center; justify-content:center; min-height:440px;")}>
             <div style={css("position:absolute; width:340px; height:340px; border-radius:50%; background:radial-gradient(circle, rgba(34,197,94,0.22), transparent 70%); filter:blur(10px); animation:ricoPulse 4s ease-in-out infinite;")}></div>
-            <div style={css("position:relative; width:330px; height:400px; animation:ricoFloat 6s ease-in-out infinite;")}>
+            <div className="rg-hero-visual-inner" style={css("position:relative; width:330px; height:400px; animation:ricoFloat 6s ease-in-out infinite;")}>
               <div style={css("position:absolute; inset:0; border:1px solid rgba(255,255,255,0.08); border-radius:24px; overflow:hidden; background:#0C131E;")}>
                 <img src="data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D%220%200%20420%20560%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20role%3D%22img%22%20aria-label%3D%22Rico%20robot%20mascot%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22body%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23FFFFFF%22%3E%3C%2Fstop%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.55%22%20stop-color%3D%22%23EEF2F7%22%3E%3C%2Fstop%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23C9D2DE%22%3E%3C%2Fstop%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22bodyEdge%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%220%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23AEB9C7%22%3E%3C%2Fstop%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.12%22%20stop-color%3D%22%23FFFFFF%22%3E%3C%2Fstop%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.88%22%20stop-color%3D%22%23FFFFFF%22%3E%3C%2Fstop%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23AEB9C7%22%3E%3C%2Fstop%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22visor%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23141d2a%22%3E%3C%2Fstop%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2305090f%22%3E%3C%2Fstop%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22eyeGlow%22%20cx%3D%220.5%22%20cy%3D%220.45%22%20r%3D%220.7%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238BFFC0%22%3E%3C%2Fstop%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.5%22%20stop-color%3D%22%232EE57C%22%3E%3C%2Fstop%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%232EE57C%22%20stop-opacity%3D%220%22%3E%3C%2Fstop%3E%0A%20%20%20%20%3C%2FradialGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22floor%22%20cx%3D%220.5%22%20cy%3D%220.5%22%20r%3D%220.5%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232EE57C%22%20stop-opacity%3D%220.28%22%3E%3C%2Fstop%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%232EE57C%22%20stop-opacity%3D%220%22%3E%3C%2Fstop%3E%0A%20%20%20%20%3C%2FradialGradient%3E%0A%20%20%20%20%3Cfilter%20id%3D%22glow%22%20x%3D%22-60%25%22%20y%3D%22-60%25%22%20width%3D%22220%25%22%20height%3D%22220%25%22%3E%0A%20%20%20%20%20%20%3CfeGaussianBlur%20stdDeviation%3D%226%22%20result%3D%22b%22%3E%3C%2FfeGaussianBlur%3E%0A%20%20%20%20%20%20%3CfeMerge%3E%3CfeMergeNode%20in%3D%22b%22%3E%3C%2FfeMergeNode%3E%3CfeMergeNode%20in%3D%22SourceGraphic%22%3E%3C%2FfeMergeNode%3E%3C%2FfeMerge%3E%0A%20%20%20%20%3C%2Ffilter%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22chest%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23101a27%22%3E%3C%2Fstop%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23060b12%22%3E%3C%2Fstop%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%0A%20%20%0A%20%20%3Cellipse%20cx%3D%22210%22%20cy%3D%22530%22%20rx%3D%22150%22%20ry%3D%2226%22%20fill%3D%22url(%23floor)%22%3E%3C%2Fellipse%3E%0A%0A%20%20%0A%20%20%3Crect%20x%3D%22205%22%20y%3D%2240%22%20width%3D%2210%22%20height%3D%2246%22%20rx%3D%225%22%20fill%3D%22%23C9D2DE%22%3E%3C%2Frect%3E%0A%20%20%3Ccircle%20cx%3D%22210%22%20cy%3D%2240%22%20r%3D%2213%22%20fill%3D%22%232EE57C%22%20filter%3D%22url(%23glow)%22%3E%3C%2Fcircle%3E%0A%20%20%3Ccircle%20cx%3D%22210%22%20cy%3D%2240%22%20r%3D%226%22%20fill%3D%22%23C6FFDD%22%3E%3C%2Fcircle%3E%0A%0A%20%20%0A%20%20%0A%20%20%3Cg%3E%0A%20%20%20%20%3Crect%20x%3D%2270%22%20y%3D%22330%22%20width%3D%2246%22%20height%3D%22150%22%20rx%3D%2223%22%20fill%3D%22url(%23body)%22%20stroke%3D%22%23B7C1CE%22%20stroke-width%3D%222%22%3E%3C%2Frect%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2293%22%20cy%3D%22486%22%20r%3D%2230%22%20fill%3D%22url(%23body)%22%20stroke%3D%22%23B7C1CE%22%20stroke-width%3D%222%22%3E%3C%2Fcircle%3E%0A%20%20%3C%2Fg%3E%0A%20%20%0A%20%20%3Cg%3E%0A%20%20%20%20%3Crect%20x%3D%22300%22%20y%3D%22250%22%20width%3D%2244%22%20height%3D%22120%22%20rx%3D%2222%22%20fill%3D%22url(%23body)%22%20stroke%3D%22%23B7C1CE%22%20stroke-width%3D%222%22%20transform%3D%22rotate(18%20322%20310)%22%3E%3C%2Frect%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22356%22%20cy%3D%22238%22%20r%3D%2234%22%20fill%3D%22url(%23body)%22%20stroke%3D%22%23B7C1CE%22%20stroke-width%3D%222%22%3E%3C%2Fcircle%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22356%22%20cy%3D%22238%22%20r%3D%2220%22%20fill%3D%22%23EAEFF5%22%3E%3C%2Fcircle%3E%0A%20%20%3C%2Fg%3E%0A%0A%20%20%0A%20%20%3Cpath%20d%3D%22M120%20470%20C120%20360%20150%20300%20210%20300%20C270%20300%20300%20360%20300%20470%20C300%20500%20280%20512%20250%20512%20L170%20512%20C140%20512%20120%20500%20120%20470%20Z%22%20fill%3D%22url(%23body)%22%20stroke%3D%22%23B7C1CE%22%20stroke-width%3D%222%22%3E%3C%2Fpath%3E%0A%20%20%0A%20%20%3Ccircle%20cx%3D%22132%22%20cy%3D%22330%22%20r%3D%2234%22%20fill%3D%22url(%23body)%22%20stroke%3D%22%23B7C1CE%22%20stroke-width%3D%222%22%3E%3C%2Fcircle%3E%0A%20%20%3Ccircle%20cx%3D%22288%22%20cy%3D%22330%22%20r%3D%2234%22%20fill%3D%22url(%23body)%22%20stroke%3D%22%23B7C1CE%22%20stroke-width%3D%222%22%3E%3C%2Fcircle%3E%0A%0A%20%20%0A%20%20%3Ccircle%20cx%3D%22210%22%20cy%3D%22392%22%20r%3D%2246%22%20fill%3D%22url(%23chest)%22%20stroke%3D%22rgba(46%2C229%2C124%2C0.35)%22%20stroke-width%3D%222%22%3E%3C%2Fcircle%3E%0A%20%20%3Cg%20transform%3D%22translate(210%20392)%20scale(0.34)%20translate(-100%20-120)%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%2047%2036%20L%2047%20206%22%20fill%3D%22none%22%20stroke%3D%22%232EE57C%22%20stroke-width%3D%2230%22%20stroke-linecap%3D%22round%22%3E%3C%2Fpath%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%2047%2044%20C%20104%2020%20160%2046%20160%2092%20C%20160%20130%20122%20140%2086%20121%22%20fill%3D%22none%22%20stroke%3D%22%232EE57C%22%20stroke-width%3D%2230%22%20stroke-linecap%3D%22round%22%3E%3C%2Fpath%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%2096%20120%20L%20154%20200%22%20fill%3D%22none%22%20stroke%3D%22%232EE57C%22%20stroke-width%3D%2230%22%20stroke-linecap%3D%22round%22%3E%3C%2Fpath%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22176%22%20cy%3D%22192%22%20r%3D%2216%22%20fill%3D%22%23C9A24A%22%3E%3C%2Fcircle%3E%0A%20%20%3C%2Fg%3E%0A%0A%20%20%0A%20%20%3Crect%20x%3D%22182%22%20y%3D%22238%22%20width%3D%2256%22%20height%3D%2234%22%20rx%3D%2212%22%20fill%3D%22%23DCE3EB%22%20stroke%3D%22%23B7C1CE%22%20stroke-width%3D%222%22%3E%3C%2Frect%3E%0A%0A%20%20%0A%20%20%0A%20%20%3Crect%20x%3D%2286%22%20y%3D%22128%22%20width%3D%2226%22%20height%3D%2260%22%20rx%3D%2213%22%20fill%3D%22%23161d29%22%3E%3C%2Frect%3E%0A%20%20%3Ccircle%20cx%3D%2299%22%20cy%3D%22158%22%20r%3D%227%22%20fill%3D%22%232EE57C%22%3E%3C%2Fcircle%3E%0A%20%20%3Crect%20x%3D%22308%22%20y%3D%22128%22%20width%3D%2226%22%20height%3D%2260%22%20rx%3D%2213%22%20fill%3D%22%23161d29%22%3E%3C%2Frect%3E%0A%20%20%3Ccircle%20cx%3D%22321%22%20cy%3D%22158%22%20r%3D%227%22%20fill%3D%22%232EE57C%22%3E%3C%2Fcircle%3E%0A%0A%20%20%3Crect%20x%3D%22104%22%20y%3D%2284%22%20width%3D%22212%22%20height%3D%22176%22%20rx%3D%2252%22%20fill%3D%22url(%23bodyEdge)%22%20stroke%3D%22%23B7C1CE%22%20stroke-width%3D%222%22%3E%3C%2Frect%3E%0A%20%20%0A%20%20%3Crect%20x%3D%22126%22%20y%3D%2298%22%20width%3D%22168%22%20height%3D%2240%22%20rx%3D%2220%22%20fill%3D%22%23FFFFFF%22%20opacity%3D%220.7%22%3E%3C%2Frect%3E%0A%0A%20%20%0A%20%20%3Crect%20x%3D%22126%22%20y%3D%22112%22%20width%3D%22168%22%20height%3D%22118%22%20rx%3D%2244%22%20fill%3D%22url(%23visor)%22%3E%3C%2Frect%3E%0A%20%20%3Crect%20x%3D%22126%22%20y%3D%22112%22%20width%3D%22168%22%20height%3D%2260%22%20rx%3D%2244%22%20fill%3D%22%231c2735%22%20opacity%3D%220.5%22%3E%3C%2Frect%3E%0A%0A%20%20%0A%20%20%3Cg%20filter%3D%22url(%23glow)%22%3E%0A%20%20%20%20%3Crect%20x%3D%22158%22%20y%3D%22150%22%20width%3D%2234%22%20height%3D%2248%22%20rx%3D%2217%22%20fill%3D%22%232EE57C%22%3E%3C%2Frect%3E%0A%20%20%20%20%3Crect%20x%3D%22228%22%20y%3D%22150%22%20width%3D%2234%22%20height%3D%2248%22%20rx%3D%2217%22%20fill%3D%22%232EE57C%22%3E%3C%2Frect%3E%0A%20%20%3C%2Fg%3E%0A%20%20%3Crect%20x%3D%22164%22%20y%3D%22156%22%20width%3D%2214%22%20height%3D%2220%22%20rx%3D%227%22%20fill%3D%22%23CFFFE3%22%20opacity%3D%220.9%22%3E%3C%2Frect%3E%0A%20%20%3Crect%20x%3D%22234%22%20y%3D%22156%22%20width%3D%2214%22%20height%3D%2220%22%20rx%3D%227%22%20fill%3D%22%23CFFFE3%22%20opacity%3D%220.9%22%3E%3C%2Frect%3E%0A%3C%2Fsvg%3E" alt="روبوت ريكو" style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} />
               </div>
@@ -109,7 +206,7 @@ export default function App() {
 
         {/* STATS */}
         <section style={css("max-width:1120px; margin:24px auto 0; padding:0 40px;")}>
-          <div style={css("display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.07); border-radius:18px; overflow:hidden;")}>
+          <div className="rg-stats-grid" style={css("display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.07); border-radius:18px; overflow:hidden;")}>
             <div style={css("background:#0B1320; padding:30px; text-align:center;")}>
               <div style={css("font-size:38px; font-weight:700; color:#2EE57C;")}>+50,000</div>
               <div style={css("font-size:15px; color:#AEB6C4; margin-top:6px;")}>طلب تم تنفيذه</div>
@@ -129,9 +226,9 @@ export default function App() {
         <section id="how-it-works" style={css("max-width:1200px; margin:0 auto; padding:88px 40px 40px;")}>
           <div style={css("text-align:center; margin-bottom:48px;")}>
             <div style={css("font-size:13px; letter-spacing:0.28em; color:#2EE57C; text-transform:uppercase; margin-bottom:12px;")}>How It Works</div>
-            <h2 style={css("font-size:36px; font-weight:700; color:#FFFFFF; margin:0;")}>كيف يعمل ريكو قو؟</h2>
+            <h2 className="rg-section-h2" style={css("font-size:36px; font-weight:700; color:#FFFFFF; margin:0;")}>كيف يعمل ريكو قو؟</h2>
           </div>
-          <div style={css("display:grid; grid-template-columns:repeat(5,1fr); gap:16px;")}>
+          <div className="rg-how-grid" style={css("display:grid; grid-template-columns:repeat(5,1fr); gap:16px;")}>
             <div style={css("background:#0C1420; border:1px solid rgba(46,229,124,0.16); border-radius:16px; padding:24px 18px; text-align:center;")}>
               <div style={css("width:40px; height:40px; margin:0 auto 16px; border-radius:12px; background:rgba(34,197,94,0.12); color:#2EE57C; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:17px;")}>1</div>
               <div style={css("font-size:17px; font-weight:600; color:#FFFFFF; margin-bottom:8px;")}>يفهم طلبك</div>
@@ -161,9 +258,9 @@ export default function App() {
         </section>
 
         {/* DEMO + PROMPTS */}
-        <section style={css("max-width:1200px; margin:0 auto; padding:56px 40px; display:grid; grid-template-columns:0.85fr 1.15fr; gap:48px; align-items:center;")}>
+        <section className="rg-demo-grid" style={css("max-width:1200px; margin:0 auto; padding:56px 40px; display:grid; grid-template-columns:0.85fr 1.15fr; gap:48px; align-items:center;")}>
           {/* phone chat mock */}
-          <div style={css("justify-self:center; width:300px; height:600px; background:#0A0F18; border:10px solid #161d29; border-radius:44px; box-shadow:0 30px 70px rgba(0,0,0,0.5); overflow:hidden; position:relative;")}>
+          <div className="rg-demo-phone" style={css("justify-self:center; width:300px; height:600px; background:#0A0F18; border:10px solid #161d29; border-radius:44px; box-shadow:0 30px 70px rgba(0,0,0,0.5); overflow:hidden; position:relative;")}>
             <div style={css("height:44px; display:flex; align-items:center; justify-content:space-between; padding:0 22px; font-size:12px; color:#8A93A5;")}><span>9:41</span><span>ريكو</span></div>
             <div style={css("padding:14px 16px; display:flex; flex-direction:column; gap:14px;")}>
               <div style={css("align-self:flex-start; background:#141d2a; color:#E6E9EF; padding:12px 14px; border-radius:14px 14px 14px 4px; font-size:14px; line-height:1.6; max-width:82%;")}>أهلاً! أنا ريكو 👋 قل لي وش تبي وأنا أنفّذه لك.</div>
@@ -184,7 +281,7 @@ export default function App() {
 
           <div>
             <div style={css("font-size:13px; letter-spacing:0.28em; color:#C9A24A; text-transform:uppercase; margin-bottom:12px;")}>Just Ask</div>
-            <h2 style={css("font-size:34px; font-weight:700; color:#FFFFFF; margin:0 0 14px;")}>أمثلة طلبات تقولها لريكو</h2>
+            <h2 className="rg-section-h2" style={css("font-size:34px; font-weight:700; color:#FFFFFF; margin:0 0 14px;")}>أمثلة طلبات تقولها لريكو</h2>
             <p style={css("font-size:17px; color:#AEB6C4; line-height:1.7; margin:0 0 26px; max-width:520px;")}>اكتبها أو قلها صوتيًا — ريكو يفهمك ويكمّل الباقي بنفسه.</p>
             <div style={css("display:flex; flex-direction:column; gap:12px;")}>
               <div style={css("display:flex; align-items:center; gap:14px; background:#0C1420; border:1px solid rgba(255,255,255,0.07); border-radius:14px; padding:15px 18px;")}>
@@ -210,10 +307,10 @@ export default function App() {
         {/* CAPABILITIES */}
         <section style={css("max-width:1200px; margin:0 auto; padding:56px 40px;")}>
           <div style={css("text-align:center; margin-bottom:44px;")}>
-            <h2 style={css("font-size:34px; font-weight:700; color:#FFFFFF; margin:0 0 10px;")}>ريكو ينفّذ الطلب بالكامل — بدون أي ضغط منك</h2>
+            <h2 className="rg-section-h2" style={css("font-size:34px; font-weight:700; color:#FFFFFF; margin:0 0 10px;")}>ريكو ينفّذ الطلب بالكامل — بدون أي ضغط منك</h2>
             <p style={css("font-size:16px; color:#AEB6C4; margin:0;")}>من فهم الطلب حتى وصوله، ريكو يتكفّل بكل خطوة.</p>
           </div>
-          <div style={css("display:grid; grid-template-columns:repeat(5,1fr); gap:16px;")}>
+          <div className="rg-capabilities-grid" style={css("display:grid; grid-template-columns:repeat(5,1fr); gap:16px;")}>
             <div style={css("background:#0C1420; border:1px solid rgba(255,255,255,0.07); border-radius:16px; padding:22px;")}>
               <div style={css("width:44px;height:44px;border-radius:12px;background:rgba(34,197,94,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:16px;")}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2EE57C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
               <div style={css("font-size:16px; font-weight:600; color:#FFFFFF; margin-bottom:6px;")}>تحديد الموقع تلقائيًا</div>
@@ -244,10 +341,10 @@ export default function App() {
 
         {/* APP SHOWCASE */}
         <section id="download" style={css("max-width:1200px; margin:0 auto; padding:56px 40px;")}>
-          <div style={css("background:linear-gradient(180deg, #0C1622, #0A121C); border:1px solid rgba(255,255,255,0.07); border-radius:24px; padding:48px; display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;")}>
+          <div className="rg-showcase-grid" style={css("background:linear-gradient(180deg, #0C1622, #0A121C); border:1px solid rgba(255,255,255,0.07); border-radius:24px; padding:48px; display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;")}>
             <div>
               <div style={css("font-size:13px; letter-spacing:0.28em; color:#2EE57C; text-transform:uppercase; margin-bottom:12px;")}>The App</div>
-              <h2 style={css("font-size:34px; font-weight:700; color:#FFFFFF; margin:0 0 16px;")}>تطبيق واحد يطلب لك كل شيء</h2>
+              <h2 className="rg-section-h2" style={css("font-size:34px; font-weight:700; color:#FFFFFF; margin:0 0 16px;")}>تطبيق واحد يطلب لك كل شيء</h2>
               <p style={css("font-size:17px; color:#AEB6C4; line-height:1.7; margin:0 0 26px;")}>طعام، بقالة، خدمات — قارن الأسعار، وفّر وقتك، وخلّي ريكو ينفّذ. متوفر قريبًا على iOS و Android.</p>
               <div style={css("display:flex; gap:14px; flex-wrap:wrap;")}>
                 <a href="#waitlist" style={css("display:flex; align-items:center; gap:10px; background:#111a26; border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:12px 20px; color:#E6E9EF;")}>
@@ -260,8 +357,8 @@ export default function App() {
                 </a>
               </div>
             </div>
-            <div style={css("display:flex; gap:18px; justify-content:center;")}>
-              <div style={css("width:210px; height:430px; border:8px solid #161d29; border-radius:36px; overflow:hidden; background:#0A0F18; box-shadow:0 24px 60px rgba(0,0,0,0.5); display:flex; flex-direction:column;")}>
+            <div className="rg-showcase-phones" style={css("display:flex; gap:18px; justify-content:center;")}>
+              <div className="rg-showcase-phone" style={css("width:210px; height:430px; border:8px solid #161d29; border-radius:36px; overflow:hidden; background:#0A0F18; box-shadow:0 24px 60px rgba(0,0,0,0.5); display:flex; flex-direction:column;")}>
                 <div style={css("height:34px; display:flex; align-items:center; justify-content:space-between; padding:0 16px; font-size:10px; color:#8A93A5; flex-shrink:0;")}>
                   <span>9:41</span>
                   <span>ريكو</span>
@@ -287,7 +384,7 @@ export default function App() {
                   </div>
                 </div>
               </div>
-              <div style={css("width:210px; height:430px; border:8px solid #161d29; border-radius:36px; overflow:hidden; background:#0A0F18; box-shadow:0 24px 60px rgba(0,0,0,0.5); margin-top:26px; display:flex; flex-direction:column;")}>
+              <div className="rg-showcase-phone" style={css("width:210px; height:430px; border:8px solid #161d29; border-radius:36px; overflow:hidden; background:#0A0F18; box-shadow:0 24px 60px rgba(0,0,0,0.5); margin-top:26px; display:flex; flex-direction:column;")}>
                 <div style={css("height:34px; display:flex; align-items:center; justify-content:space-between; padding:0 16px; font-size:10px; color:#8A93A5; flex-shrink:0;")}>
                   <span>9:42</span>
                   <span>ريكو</span>
@@ -318,7 +415,7 @@ export default function App() {
         </section>
 
         {/* PAYMENTS + SAFETY */}
-        <section style={css("max-width:1200px; margin:0 auto; padding:40px 40px 56px; display:grid; grid-template-columns:1fr 1fr; gap:24px;")}>
+        <section className="rg-payments-grid" style={css("max-width:1200px; margin:0 auto; padding:40px 40px 56px; display:grid; grid-template-columns:1fr 1fr; gap:24px;")}>
           <div style={css("background:#0C1420; border:1px solid rgba(255,255,255,0.07); border-radius:20px; padding:32px;")}>
             <h3 style={css("font-size:22px; font-weight:600; color:#FFFFFF; margin:0 0 22px;")}>طرق الدفع المتاحة</h3>
             <div style={css("display:grid; grid-template-columns:1fr 1fr; gap:14px;")}>
@@ -343,10 +440,10 @@ export default function App() {
         <section id="pricing" style={css("max-width:1200px; margin:0 auto; padding:56px 40px;")}>
           <div style={css("text-align:center; margin-bottom:44px;")}>
             <div style={css("font-size:13px; letter-spacing:0.28em; color:#2EE57C; text-transform:uppercase; margin-bottom:12px;")}>Pricing</div>
-            <h2 style={css("font-size:34px; font-weight:700; color:#FFFFFF; margin:0 0 10px;")}>أسعار بسيطة وواضحة</h2>
+            <h2 className="rg-section-h2" style={css("font-size:34px; font-weight:700; color:#FFFFFF; margin:0 0 10px;")}>أسعار بسيطة وواضحة</h2>
             <p style={css("font-size:16px; color:#AEB6C4; margin:0;")}>بدون رسوم مخفية — تدفع فقط مقابل ما تطلبه.</p>
           </div>
-          <div style={css("display:grid; grid-template-columns:repeat(3,1fr); gap:20px;")}>
+          <div className="rg-pricing-grid" style={css("display:grid; grid-template-columns:repeat(3,1fr); gap:20px;")}>
             <div style={css("background:#0C1420; border:1px solid rgba(255,255,255,0.07); border-radius:20px; padding:32px;")}>
               <div style={css("font-size:16px; font-weight:600; color:#FFFFFF; margin-bottom:8px;")}>مجاني</div>
               <div style={css("font-size:34px; font-weight:700; color:#FFFFFF; margin-bottom:4px;")}>0 ريال<span style={css("font-size:14px; color:#94A0B3; font-weight:400;")}> / شهريًا</span></div>
@@ -384,14 +481,14 @@ export default function App() {
 
         {/* ABOUT */}
         <section id="about" style={css("max-width:1200px; margin:0 auto; padding:56px 40px;")}>
-          <div style={css("display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; margin-bottom:48px;")}>
+          <div className="rg-about-grid" style={css("display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; margin-bottom:48px;")}>
             <div>
               <div style={css("font-size:13px; letter-spacing:0.28em; color:#2EE57C; text-transform:uppercase; margin-bottom:12px;")}>About</div>
-              <h2 style={css("font-size:34px; font-weight:700; color:#FFFFFF; margin:0 0 16px;")}>عن ريكو قو</h2>
+              <h2 className="rg-section-h2" style={css("font-size:34px; font-weight:700; color:#FFFFFF; margin:0 0 16px;")}>عن ريكو قو</h2>
               <p style={css("font-size:17px; color:#AEB6C4; line-height:1.8; margin:0 0 16px;")}>ريكو قو مساعد ذكي سعودي يفهم طلبك بلغتك الطبيعية، وينفّذه بالكامل نيابة عنك — من البحث والمقارنة إلى الطلب والدفع والمتابعة. هدفنا نرجع لك وقتك.</p>
               <p style={css("font-size:17px; color:#AEB6C4; line-height:1.8; margin:0;")}>نؤمن أن التسوق والطلب ما يفترض يكون مجهود — ريكو يتكفّل بكل التفاصيل حتى يوصلك طلبك وأنت مرتاح.</p>
             </div>
-            <div style={css("display:grid; grid-template-columns:1fr 1fr; gap:16px;")}>
+            <div className="rg-about-stats" style={css("display:grid; grid-template-columns:1fr 1fr; gap:16px;")}>
               <div style={css("background:#0C1420; border:1px solid rgba(255,255,255,0.07); border-radius:16px; padding:24px; text-align:center;")}>
                 <div style={css("font-size:30px; font-weight:700; color:#2EE57C;")}>2025</div>
                 <div style={css("font-size:13px; color:#94A0B3; margin-top:6px;")}>سنة التأسيس</div>
@@ -411,7 +508,7 @@ export default function App() {
             </div>
           </div>
 
-          <div id="partners" style={css("background:linear-gradient(135deg, #0C1420, #0A121C); border:1px solid rgba(255,255,255,0.07); border-radius:20px; padding:36px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;")}>
+          <div id="partners" className="rg-partners" style={css("background:linear-gradient(135deg, #0C1420, #0A121C); border:1px solid rgba(255,255,255,0.07); border-radius:20px; padding:36px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;")}>
             <div>
               <h3 style={css("font-size:22px; font-weight:600; color:#FFFFFF; margin:0 0 8px;")}>شراكات واستثمار</h3>
               <p style={css("font-size:15px; color:#AEB6C4; margin:0; max-width:480px;")}>نتطلع للتعاون مع المتاجر والمطاعم والمستثمرين اللي يشاركوننا رؤية مستقبل الطلب الذكي في السعودية.</p>
@@ -425,7 +522,7 @@ export default function App() {
           <div style={css("position:relative; overflow:hidden; background:linear-gradient(135deg, #0d2a1c, #0A141F); border:1px solid rgba(46,229,124,0.25); border-radius:24px; padding:52px 48px; text-align:center;")}>
             <div style={css("position:absolute; width:400px;height:400px; border-radius:50%; background:radial-gradient(circle, rgba(34,197,94,0.18), transparent 70%); top:-180px; right:-80px;")}></div>
             <div style={css("position:relative;")}>
-              <h2 style={css("font-size:34px; font-weight:700; color:#FFFFFF; margin:0 0 12px;")}>جرّب ريكو — قل ما تريد، وسيهتم بالباقي</h2>
+              <h2 className="rg-section-h2" style={css("font-size:34px; font-weight:700; color:#FFFFFF; margin:0 0 12px;")}>جرّب ريكو — قل ما تريد، وسيهتم بالباقي</h2>
               <p style={css("font-size:17px; color:#B9C2D0; margin:0 0 28px;")}>انضم للوصول المبكر واحصل على أولوية التجربة عند الإطلاق.</p>
               {submitted && (
                 <div style={css("display:inline-flex; align-items:center; gap:12px; background:rgba(34,197,94,0.12); border:1px solid rgba(46,229,124,0.4); border-radius:14px; padding:18px 28px;")}>
@@ -434,7 +531,7 @@ export default function App() {
                 </div>
               )}
               {!submitted && (
-                <div style={css("display:flex; gap:12px; max-width:520px; margin:0 auto; flex-wrap:wrap; justify-content:center;")}>
+                <div className="rg-waitlist-row" style={css("display:flex; gap:12px; max-width:520px; margin:0 auto; flex-wrap:wrap; justify-content:center;")}>
                   <input value={phone} onChange={onPhone} placeholder="جوالك (مثال: 05xxxxxxxx)" style={css("flex:1; min-width:240px; background:#0A121C; border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:15px 18px; color:#FFFFFF; font-size:16px; font-family:inherit; outline:none;")} />
                   <button onClick={submit} style={css("background:#22C55E; color:#04140A; font-weight:600; padding:15px 34px; border-radius:12px; font-size:16px; border:none; cursor:pointer; box-shadow:0 12px 30px rgba(34,197,94,0.3); font-family:inherit;")}>انضم الآن</button>
                 </div>
@@ -445,7 +542,7 @@ export default function App() {
 
         {/* FOOTER */}
         <footer style={css("border-top:1px solid rgba(255,255,255,0.06); background:#060A11;")}>
-          <div style={css("max-width:1200px; margin:0 auto; padding:48px 40px 28px; display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px;")}>
+          <div className="rg-footer-grid" style={css("max-width:1200px; margin:0 auto; padding:48px 40px 28px; display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px;")}>
             <div>
               <div style={css("display:flex; align-items:center; gap:12px; margin-bottom:16px;")}>
                 <svg viewBox="0 0 200 240" style={css("color:#FFFFFF; width:32px; height:38px;")}><use href="#rmark"></use></svg>
