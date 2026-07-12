@@ -63,8 +63,8 @@ export default function App() {
           <div style={css("display:flex; align-items:center; gap:32px; font-size:15px; color:#AEB6C4;")}>
             <a href="#" style={css("color:#E6E9EF;")}>الرئيسية</a>
             <a href="#how-it-works" style={css("color:#AEB6C4;")}>كيف يعمل</a>
-            <a href="#" style={css("color:#AEB6C4;")}>الأسعار</a>
-            <a href="#" style={css("color:#AEB6C4;")}>عن ريكو</a>
+            <a href="#pricing" style={css("color:#AEB6C4;")}>الأسعار</a>
+            <a href="#about" style={css("color:#AEB6C4;")}>عن ريكو</a>
           </div>
           <a href="#waitlist" style={css("background:#22C55E; color:#04140A; font-weight:600; padding:11px 22px; border-radius:11px; font-size:15px; box-shadow:0 8px 24px rgba(34,197,94,0.25);")}>جرّب ريكو الآن</a>
         </nav>
@@ -261,11 +261,57 @@ export default function App() {
               </div>
             </div>
             <div style={css("display:flex; gap:18px; justify-content:center;")}>
-              <div style={css("width:210px; height:430px; border:8px solid #161d29; border-radius:36px; overflow:hidden; background:#0A0F18; box-shadow:0 24px 60px rgba(0,0,0,0.5);")}>
-                <div style={css("width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:#5C6678; font-size:13px; text-align:center; padding:12px;")}>لقطة الشاشة ١</div>
+              <div style={css("width:210px; height:430px; border:8px solid #161d29; border-radius:36px; overflow:hidden; background:#0A0F18; box-shadow:0 24px 60px rgba(0,0,0,0.5); display:flex; flex-direction:column;")}>
+                <div style={css("height:34px; display:flex; align-items:center; justify-content:space-between; padding:0 16px; font-size:10px; color:#8A93A5; flex-shrink:0;")}>
+                  <span>9:41</span>
+                  <span>ريكو</span>
+                </div>
+                <div style={css("padding:14px 16px; flex:1; display:flex; flex-direction:column; gap:12px;")}>
+                  <div style={css("font-size:15px; font-weight:600; color:#FFFFFF;")}>أهلاً 👋 وش تبي اليوم؟</div>
+                  <div style={css("display:flex; align-items:center; gap:8px; background:#141d2a; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:10px 12px;")}>
+                    <span style={css("width:16px; height:16px; border-radius:50%; background:#2EE57C; flex-shrink:0;")}></span>
+                    <span style={css("font-size:11px; color:#8A93A5;")}>قل لي وش تحتاج…</span>
+                  </div>
+                  <div style={css("display:grid; grid-template-columns:1fr 1fr; gap:8px;")}>
+                    <div style={css("background:#141d2a; border-radius:10px; padding:10px; text-align:center; font-size:10.5px; color:#E6E9EF;")}>🍔<br/>طعام</div>
+                    <div style={css("background:#141d2a; border-radius:10px; padding:10px; text-align:center; font-size:10.5px; color:#E6E9EF;")}>🛒<br/>بقالة</div>
+                    <div style={css("background:#141d2a; border-radius:10px; padding:10px; text-align:center; font-size:10.5px; color:#E6E9EF;")}>📱<br/>جوالات</div>
+                    <div style={css("background:#141d2a; border-radius:10px; padding:10px; text-align:center; font-size:10.5px; color:#E6E9EF;")}>💊<br/>صيدلية</div>
+                  </div>
+                  <div style={css("margin-top:auto; background:#0F1B27; border:1px solid rgba(46,229,124,0.25); border-radius:12px; padding:10px 12px;")}>
+                    <div style={css("font-size:10px; color:#94A0B3; margin-bottom:4px;")}>آخر طلب</div>
+                    <div style={css("display:flex; align-items:center; gap:6px; font-size:11px; color:#E6E9EF;")}>
+                      <span style={css("width:7px; height:7px; border-radius:50%; background:#2EE57C; box-shadow:0 0 6px #2EE57C;")}></span>
+                      في الطريق إليك
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div style={css("width:210px; height:430px; border:8px solid #161d29; border-radius:36px; overflow:hidden; background:#0A0F18; box-shadow:0 24px 60px rgba(0,0,0,0.5); margin-top:26px;")}>
-                <div style={css("width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:#5C6678; font-size:13px; text-align:center; padding:12px;")}>لقطة الشاشة ٢</div>
+              <div style={css("width:210px; height:430px; border:8px solid #161d29; border-radius:36px; overflow:hidden; background:#0A0F18; box-shadow:0 24px 60px rgba(0,0,0,0.5); margin-top:26px; display:flex; flex-direction:column;")}>
+                <div style={css("height:34px; display:flex; align-items:center; justify-content:space-between; padding:0 16px; font-size:10px; color:#8A93A5; flex-shrink:0;")}>
+                  <span>9:42</span>
+                  <span>ريكو</span>
+                </div>
+                <div style={css("padding:14px 16px; flex:1; display:flex; flex-direction:column; gap:12px;")}>
+                  <div style={css("font-size:15px; font-weight:600; color:#FFFFFF;")}>تتبع طلبك</div>
+                  <div style={css("position:relative; height:120px; border-radius:14px; background:radial-gradient(circle at 30% 30%, rgba(34,197,94,0.22), transparent 60%), #10192a; border:1px solid rgba(255,255,255,0.06); overflow:hidden;")}>
+                    <div style={css("position:absolute; inset:0; background:repeating-linear-gradient(135deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 14px);")}></div>
+                    <span style={css("position:absolute; top:18px; left:22px; width:10px; height:10px; border-radius:50%; background:#FFFFFF; box-shadow:0 0 0 4px rgba(255,255,255,0.15);")}></span>
+                    <span style={css("position:absolute; bottom:16px; right:20px; width:12px; height:12px; border-radius:50%; background:#2EE57C; box-shadow:0 0 10px #2EE57C;")}></span>
+                  </div>
+                  <div style={css("font-size:11.5px; color:#AEB6C4;")}>الوصول خلال <b style={css("color:#2EE57C;")}>12 دقيقة</b></div>
+                  <div style={css("display:flex; flex-direction:column; gap:8px;")}>
+                    <div style={css("display:flex; align-items:center; gap:8px; font-size:10.5px; color:#E6E9EF;")}><span style={css("color:#2EE57C;")}>✓</span> تم استلام الطلب</div>
+                    <div style={css("display:flex; align-items:center; gap:8px; font-size:10.5px; color:#E6E9EF;")}><span style={css("color:#2EE57C;")}>✓</span> جاري التحضير</div>
+                    <div style={css("display:flex; align-items:center; gap:8px; font-size:10.5px; color:#2EE57C; font-weight:600;")}><span style={css("width:7px; height:7px; border-radius:50%; background:#2EE57C; box-shadow:0 0 6px #2EE57C; display:inline-block;")}></span> في الطريق إليك</div>
+                    <div style={css("display:flex; align-items:center; gap:8px; font-size:10.5px; color:#5C6678;")}><span>○</span> تم التوصيل</div>
+                  </div>
+                  <div style={css("margin-top:auto; display:flex; align-items:center; gap:10px; background:#141d2a; border-radius:12px; padding:10px 12px;")}>
+                    <span style={css("width:28px; height:28px; border-radius:50%; background:#2EE57C; display:flex; align-items:center; justify-content:center; font-size:13px; flex-shrink:0;")}>🚗</span>
+                    <span style={css("font-size:11px; color:#E6E9EF; flex:1;")}>سعيد · Camry أبيض</span>
+                    <span style={css("width:26px; height:26px; border-radius:50%; background:rgba(34,197,94,0.15); display:flex; align-items:center; justify-content:center; font-size:12px;")}>📞</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -290,6 +336,87 @@ export default function App() {
               <div style={css("display:flex; align-items:center; gap:12px;")}><span style={css("width:24px;height:24px;border-radius:50%;background:rgba(34,197,94,0.14);display:flex;align-items:center;justify-content:center;flex-shrink:0;")}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2EE57C" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span style={css("color:#D6DBE4; font-size:15.5px;")}>يمكنك إلغاء الطلب في أي وقت</span></div>
               <div style={css("display:flex; align-items:center; gap:12px;")}><span style={css("width:24px;height:24px;border-radius:50%;background:rgba(34,197,94,0.14);display:flex;align-items:center;justify-content:center;flex-shrink:0;")}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2EE57C" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span style={css("color:#D6DBE4; font-size:15.5px;")}>لا نحفظ بيانات بطاقتك البنكية</span></div>
             </div>
+          </div>
+        </section>
+
+        {/* PRICING */}
+        <section id="pricing" style={css("max-width:1200px; margin:0 auto; padding:56px 40px;")}>
+          <div style={css("text-align:center; margin-bottom:44px;")}>
+            <div style={css("font-size:13px; letter-spacing:0.28em; color:#2EE57C; text-transform:uppercase; margin-bottom:12px;")}>Pricing</div>
+            <h2 style={css("font-size:34px; font-weight:700; color:#FFFFFF; margin:0 0 10px;")}>أسعار بسيطة وواضحة</h2>
+            <p style={css("font-size:16px; color:#AEB6C4; margin:0;")}>بدون رسوم مخفية — تدفع فقط مقابل ما تطلبه.</p>
+          </div>
+          <div style={css("display:grid; grid-template-columns:repeat(3,1fr); gap:20px;")}>
+            <div style={css("background:#0C1420; border:1px solid rgba(255,255,255,0.07); border-radius:20px; padding:32px;")}>
+              <div style={css("font-size:16px; font-weight:600; color:#FFFFFF; margin-bottom:8px;")}>مجاني</div>
+              <div style={css("font-size:34px; font-weight:700; color:#FFFFFF; margin-bottom:4px;")}>0 ريال<span style={css("font-size:14px; color:#94A0B3; font-weight:400;")}> / شهريًا</span></div>
+              <p style={css("font-size:13.5px; color:#94A0B3; line-height:1.6; margin:0 0 20px;")}>حمّل التطبيق وابدأ فورًا. تدفع فقط سعر طلبك.</p>
+              <div style={css("display:flex; flex-direction:column; gap:12px;")}>
+                <div style={css("display:flex; align-items:center; gap:10px; font-size:14px; color:#D6DBE4;")}><span style={css("color:#2EE57C;")}>✓</span> طلبات غير محدودة</div>
+                <div style={css("display:flex; align-items:center; gap:10px; font-size:14px; color:#D6DBE4;")}><span style={css("color:#2EE57C;")}>✓</span> رسوم توصيل قياسية</div>
+                <div style={css("display:flex; align-items:center; gap:10px; font-size:14px; color:#D6DBE4;")}><span style={css("color:#2EE57C;")}>✓</span> دعم عبر الدردشة</div>
+              </div>
+            </div>
+            <div style={css("position:relative; background:linear-gradient(180deg, #0d2a1c, #0C1420); border:1px solid rgba(46,229,124,0.4); border-radius:20px; padding:32px; box-shadow:0 20px 50px rgba(34,197,94,0.12);")}>
+              <div style={css("position:absolute; top:-13px; right:28px; background:#22C55E; color:#04140A; font-size:12px; font-weight:700; padding:5px 14px; border-radius:999px;")}>الأكثر طلبًا</div>
+              <div style={css("font-size:16px; font-weight:600; color:#FFFFFF; margin-bottom:8px;")}>ريكو+</div>
+              <div style={css("font-size:34px; font-weight:700; color:#FFFFFF; margin-bottom:4px;")}>29 ريال<span style={css("font-size:14px; color:#94A0B3; font-weight:400;")}> / شهريًا</span></div>
+              <p style={css("font-size:13.5px; color:#94A0B3; line-height:1.6; margin:0 0 20px;")}>لمن يطلب باستمرار ويريد أولوية وتوفير أكبر.</p>
+              <div style={css("display:flex; flex-direction:column; gap:12px;")}>
+                <div style={css("display:flex; align-items:center; gap:10px; font-size:14px; color:#D6DBE4;")}><span style={css("color:#2EE57C;")}>✓</span> توصيل مجاني على أغلب الطلبات</div>
+                <div style={css("display:flex; align-items:center; gap:10px; font-size:14px; color:#D6DBE4;")}><span style={css("color:#2EE57C;")}>✓</span> أولوية في التنفيذ والتتبع</div>
+                <div style={css("display:flex; align-items:center; gap:10px; font-size:14px; color:#D6DBE4;")}><span style={css("color:#2EE57C;")}>✓</span> دعم فوري على مدار الساعة</div>
+                <div style={css("display:flex; align-items:center; gap:10px; font-size:14px; color:#D6DBE4;")}><span style={css("color:#2EE57C;")}>✓</span> كاش باك على كل طلب</div>
+              </div>
+            </div>
+            <div style={css("background:#0C1420; border:1px solid rgba(255,255,255,0.07); border-radius:20px; padding:32px;")}>
+              <div style={css("font-size:16px; font-weight:600; color:#FFFFFF; margin-bottom:8px;")}>للأعمال</div>
+              <div style={css("font-size:26px; font-weight:700; color:#FFFFFF; margin-bottom:4px;")}>تواصل معنا</div>
+              <p style={css("font-size:13.5px; color:#94A0B3; line-height:1.6; margin:0 0 20px;")}>خطط مخصصة للشركات والطلبات بالجملة.</p>
+              <div style={css("display:flex; flex-direction:column; gap:12px;")}>
+                <div style={css("display:flex; align-items:center; gap:10px; font-size:14px; color:#D6DBE4;")}><span style={css("color:#2EE57C;")}>✓</span> فوترة مركزية للفريق</div>
+                <div style={css("display:flex; align-items:center; gap:10px; font-size:14px; color:#D6DBE4;")}><span style={css("color:#2EE57C;")}>✓</span> حسابات متعددة المستخدمين</div>
+                <div style={css("display:flex; align-items:center; gap:10px; font-size:14px; color:#D6DBE4;")}><span style={css("color:#2EE57C;")}>✓</span> مدير حساب مخصص</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ABOUT */}
+        <section id="about" style={css("max-width:1200px; margin:0 auto; padding:56px 40px;")}>
+          <div style={css("display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; margin-bottom:48px;")}>
+            <div>
+              <div style={css("font-size:13px; letter-spacing:0.28em; color:#2EE57C; text-transform:uppercase; margin-bottom:12px;")}>About</div>
+              <h2 style={css("font-size:34px; font-weight:700; color:#FFFFFF; margin:0 0 16px;")}>عن ريكو قو</h2>
+              <p style={css("font-size:17px; color:#AEB6C4; line-height:1.8; margin:0 0 16px;")}>ريكو قو مساعد ذكي سعودي يفهم طلبك بلغتك الطبيعية، وينفّذه بالكامل نيابة عنك — من البحث والمقارنة إلى الطلب والدفع والمتابعة. هدفنا نرجع لك وقتك.</p>
+              <p style={css("font-size:17px; color:#AEB6C4; line-height:1.8; margin:0;")}>نؤمن أن التسوق والطلب ما يفترض يكون مجهود — ريكو يتكفّل بكل التفاصيل حتى يوصلك طلبك وأنت مرتاح.</p>
+            </div>
+            <div style={css("display:grid; grid-template-columns:1fr 1fr; gap:16px;")}>
+              <div style={css("background:#0C1420; border:1px solid rgba(255,255,255,0.07); border-radius:16px; padding:24px; text-align:center;")}>
+                <div style={css("font-size:30px; font-weight:700; color:#2EE57C;")}>2025</div>
+                <div style={css("font-size:13px; color:#94A0B3; margin-top:6px;")}>سنة التأسيس</div>
+              </div>
+              <div style={css("background:#0C1420; border:1px solid rgba(255,255,255,0.07); border-radius:16px; padding:24px; text-align:center;")}>
+                <div style={css("font-size:30px; font-weight:700; color:#2EE57C;")}>+20</div>
+                <div style={css("font-size:13px; color:#94A0B3; margin-top:6px;")}>مدينة سعودية</div>
+              </div>
+              <div style={css("background:#0C1420; border:1px solid rgba(255,255,255,0.07); border-radius:16px; padding:24px; text-align:center;")}>
+                <div style={css("font-size:30px; font-weight:700; color:#2EE57C;")}>+50k</div>
+                <div style={css("font-size:13px; color:#94A0B3; margin-top:6px;")}>طلب منفّذ</div>
+              </div>
+              <div style={css("background:#0C1420; border:1px solid rgba(255,255,255,0.07); border-radius:16px; padding:24px; text-align:center;")}>
+                <div style={css("font-size:30px; font-weight:700; color:#2EE57C;")}>100%</div>
+                <div style={css("font-size:13px; color:#94A0B3; margin-top:6px;")}>سعودي</div>
+              </div>
+            </div>
+          </div>
+
+          <div id="partners" style={css("background:linear-gradient(135deg, #0C1420, #0A121C); border:1px solid rgba(255,255,255,0.07); border-radius:20px; padding:36px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;")}>
+            <div>
+              <h3 style={css("font-size:22px; font-weight:600; color:#FFFFFF; margin:0 0 8px;")}>شراكات واستثمار</h3>
+              <p style={css("font-size:15px; color:#AEB6C4; margin:0; max-width:480px;")}>نتطلع للتعاون مع المتاجر والمطاعم والمستثمرين اللي يشاركوننا رؤية مستقبل الطلب الذكي في السعودية.</p>
+            </div>
+            <a href="mailto:partners@rico-go.com" style={css("background:#22C55E; color:#04140A; font-weight:600; padding:13px 26px; border-radius:12px; font-size:15px; white-space:nowrap;")}>تواصل معنا</a>
           </div>
         </section>
 
@@ -330,15 +457,15 @@ export default function App() {
               <div style={css("color:#FFFFFF; font-weight:600; font-size:15px; margin-bottom:14px;")}>المنتج</div>
               <div style={css("display:flex; flex-direction:column; gap:10px; font-size:14px;")}>
                 <a href="#how-it-works" style={css("color:#9AA4B4;")}>كيف يعمل</a>
-                <a href="#" style={css("color:#9AA4B4;")}>الأسعار</a>
+                <a href="#pricing" style={css("color:#9AA4B4;")}>الأسعار</a>
                 <a href="#download" style={css("color:#9AA4B4;")}>حمّل التطبيق</a>
               </div>
             </div>
             <div>
               <div style={css("color:#FFFFFF; font-weight:600; font-size:15px; margin-bottom:14px;")}>الشركة</div>
               <div style={css("display:flex; flex-direction:column; gap:10px; font-size:14px;")}>
-                <a href="#" style={css("color:#9AA4B4;")}>عن ريكو</a>
-                <a href="#" style={css("color:#9AA4B4;")}>شراكات واستثمار</a>
+                <a href="#about" style={css("color:#9AA4B4;")}>عن ريكو</a>
+                <a href="#partners" style={css("color:#9AA4B4;")}>شراكات واستثمار</a>
               </div>
             </div>
             <div>
