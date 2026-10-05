@@ -28,9 +28,7 @@ export default function App() {
 
   return (
     <>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
-
+      <style dangerouslySetInnerHTML={{ __html: `
         .rico-go, .rico-go * { box-sizing: border-box; }
         .rico-go {
           margin: 0;
@@ -120,7 +118,7 @@ export default function App() {
           .rg-hero-h1 { font-size: 28px !important; }
           .rg-about-stats { grid-template-columns: 1fr 1fr !important; }
         }
-      `}</style>
+      ` }} />
 
       <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden="true">
         <symbol id="rmark" viewBox="0 0 200 240">
@@ -532,7 +530,7 @@ export default function App() {
               )}
               {!submitted && (
                 <div className="rg-waitlist-row" style={css("display:flex; gap:12px; max-width:520px; margin:0 auto; flex-wrap:wrap; justify-content:center;")}>
-                  <input value={phone} onChange={onPhone} placeholder="جوالك (مثال: 05xxxxxxxx)" style={css("flex:1; min-width:240px; background:#0A121C; border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:15px 18px; color:#FFFFFF; font-size:16px; font-family:inherit; outline:none;")} />
+                  <input type="tel" inputMode="tel" autoComplete="tel" aria-label="رقم الجوال" value={phone} onChange={onPhone} placeholder="جوالك (مثال: 05xxxxxxxx)" style={css("flex:1; min-width:240px; background:#0A121C; border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:15px 18px; color:#FFFFFF; font-size:16px; font-family:inherit; outline:none;")} />
                   <button onClick={submit} style={css("background:#22C55E; color:#04140A; font-weight:600; padding:15px 34px; border-radius:12px; font-size:16px; border:none; cursor:pointer; box-shadow:0 12px 30px rgba(34,197,94,0.3); font-family:inherit;")}>انضم الآن</button>
                 </div>
               )}
@@ -573,7 +571,7 @@ export default function App() {
               </div>
             </div>
           </div>
-          <div style={css("max-width:1200px; margin:0 auto; padding:0 40px 28px; border-top:1px solid rgba(255,255,255,0.05); padding-top:20px; color:#5C6678; font-size:13px;")}>© {year} RICO GO — جميع الحقوق محفوظة.</div>
+          <div style={css("max-width:1200px; margin:0 auto; padding:0 40px 28px; border-top:1px solid rgba(255,255,255,0.05); padding-top:20px; color:#5C6678; font-size:13px;")} suppressHydrationWarning>© {year} RICO GO — جميع الحقوق محفوظة.</div>
         </footer>
 
       </main>
