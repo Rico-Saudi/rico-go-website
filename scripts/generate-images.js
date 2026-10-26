@@ -21,10 +21,10 @@ const ogImage = `
     display:flex; flex-direction:column; justify-content:center; padding:0 96px; box-sizing:border-box; color:#fff;">
     <div style="display:flex; align-items:center; gap:20px; margin-bottom:44px;">
       <div style="width:64px; height:77px;">${mark.replace('<svg ', '<svg width="100%" height="100%" ')}</div>
-      <span style="font-size:40px; font-weight:700; letter-spacing:-0.01em;">RICO GO</span>
+      <span style="font-size:40px; font-weight:700; letter-spacing:-0.01em;">RICO</span>
     </div>
-    <div style="font-size:76px; font-weight:700; line-height:1.2;">اطلب من ريكو..<br/>وهو <span style="color:#2EE57C;">ينفّذ</span> عنك</div>
-    <div style="font-size:30px; color:#AEB6C4; margin-top:28px; font-weight:500;">مساعد ذكي للتجارة في السعودية — يبحث ويقارن ويطلب ويدفع ويتابع</div>
+    <div style="font-size:76px; font-weight:700; line-height:1.2;">نحو مستقبل<br/><span style="color:#2EE57C;">أكثر ذكاءً</span></div>
+    <div style="font-size:30px; color:#AEB6C4; margin-top:28px; font-weight:500;">تقنية تفهم احتياجك، وابتكار يصنع الفرق — ومعها Mivo AI</div>
   </body>`;
 
 const shots = [
