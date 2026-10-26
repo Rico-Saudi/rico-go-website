@@ -19,6 +19,13 @@ function css(str) {
 const MIVO_URL = '#mivo';
 const CONTACT_EMAIL = 'partners@rico-go.com';
 
+// Ad images rendered by scripts/generate-ads.js into public/ads/.
+const ADS = [
+  { name: 'assistant', title: 'مساعدك الذكي لإنجاز المزيد' },
+  { name: 'one-chat', title: 'محادثة واحدة لاحتياجات متعددة' },
+  { name: 'you-decide', title: 'أنت تحدد ما تحتاجه' },
+];
+
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const year = new Date().getFullYear();
@@ -76,6 +83,9 @@ export default function App() {
           .rg-how-grid, .rg-values-grid, .rg-solutions-grid { grid-template-columns: repeat(2, 1fr) !important; }
           .rg-footer-grid { grid-template-columns: 1fr 1fr !important; }
           .rg-hero-visual { min-height: 0 !important; margin-top: 8px; }
+          .rg-showcase-phones { flex-wrap: wrap !important; }
+          .rg-ads-grid { gap: 16px !important; }
+          .rg-showcase-item { margin-top: 0 !important; }
         }
 
         @media (max-width: 767px) {
@@ -87,8 +97,15 @@ export default function App() {
           .rg-section-h2 { font-size: 25px !important; line-height: 1.3 !important; }
           .rg-capabilities-grid { grid-template-columns: 1fr 1fr !important; }
           .rg-stats-grid, .rg-vm-grid { grid-template-columns: 1fr !important; }
+          .rg-ads-grid { grid-template-columns: 1fr !important; max-width: 440px; margin-left: auto; margin-right: auto; }
           .rg-footer-grid { grid-template-columns: 1fr !important; }
 
+          .rg-showcase-phones { flex-direction: column !important; align-items: center !important; }
+          .rg-showcase-item { width: 100%; max-width: 260px; }
+          .rg-showcase-phone {
+            width: 100% !important;
+            height: auto !important; aspect-ratio: 230 / 470 !important;
+          }
           .rg-demo-phone {
             width: 100% !important; max-width: 300px !important;
             height: auto !important; aspect-ratio: 300 / 600 !important;
@@ -116,6 +133,15 @@ export default function App() {
           <path d="M 47 44 C 104 20 160 46 160 92 C 160 130 122 140 86 121" fill="none" stroke="currentColor" strokeWidth="30" strokeLinecap="round"></path>
           <path d="M 96 120 L 154 200" fill="none" stroke="currentColor" strokeWidth="30" strokeLinecap="round"></path>
           <circle cx="176" cy="192" r="16" fill="#C9A24A"></circle>
+        </symbol>
+        <linearGradient id="mivoGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#2EE57C"></stop>
+          <stop offset="1" stopColor="#0E9F8E"></stop>
+        </linearGradient>
+        <symbol id="mivomark" viewBox="0 0 64 64">
+          <circle cx="32" cy="32" r="30" fill="url(#mivoGrad)"></circle>
+          <path d="M32 14 C34 26 38 30 50 32 C38 34 34 38 32 50 C30 38 26 34 14 32 C26 30 30 26 32 14 Z" fill="#FFFFFF"></path>
+          <circle cx="47" cy="17" r="4.5" fill="#C9A24A"></circle>
         </symbol>
       </svg>
 
@@ -267,9 +293,147 @@ export default function App() {
               <p style={css("font-size:17px; color:#AEB6C4; line-height:1.8; margin:0;")}>بدلًا من أن تبدأ رحلتك بمعرفة التطبيق المناسب أو الموقع الذي يجب أن تبحث فيه، تبدأ ببساطة بما تريد إنجازه، وتدع Mivo AI يساعدك في الوصول إلى الخيارات الملائمة.</p>
             </div>
             <div style={css("position:relative; background:#0C1420; border:1px solid rgba(46,229,124,0.3); border-radius:20px; padding:32px; box-shadow:0 20px 50px rgba(34,197,94,0.1);")}>
-              <div aria-hidden="true" style={css("font-size:56px; line-height:0.6; color:#2EE57C; opacity:0.6; margin-bottom:14px; font-family:Georgia, serif;")}>”</div>
+              <div style={css("display:flex; align-items:center; gap:12px; margin-bottom:20px;")}>
+                <svg viewBox="0 0 64 64" aria-hidden="true" style={css("width:52px; height:52px; filter:drop-shadow(0 8px 20px rgba(46,229,124,0.35));")}><use href="#mivomark"></use></svg>
+                <span style={css("font-size:20px; font-weight:700; color:#FFFFFF;")}>Mivo AI</span>
+              </div>
               <p style={css("font-size:21px; font-weight:600; color:#FFFFFF; line-height:1.7; margin:0;")}>أنت تحدد ما تحتاجه، وMivo AI يساعدك على الوصول إليه بطريقة أكثر سهولة.</p>
             </div>
+          </div>
+        </section>
+
+        {/* MIVO SHOWCASE */}
+        <section style={css("position:relative; max-width:1200px; margin:0 auto; padding:56px 40px;")}>
+          <div style={css("position:absolute; inset:80px 10% auto; height:420px; border-radius:50%; background:radial-gradient(closest-side, rgba(14,159,142,0.16), transparent); filter:blur(20px); pointer-events:none;")}></div>
+          <div style={css("position:relative; text-align:center; margin-bottom:48px;")}>
+            <div style={css("font-size:13px; letter-spacing:0.28em; color:#2EE57C; text-transform:uppercase; margin-bottom:12px;")}>Inside Mivo AI</div>
+            <h2 className="rg-section-h2" style={css("font-size:34px; font-weight:700; color:#FFFFFF; margin:0 0 10px;")}>تجربة Mivo AI</h2>
+            <p style={css("font-size:16px; color:#AEB6C4; margin:0;")}>من السؤال إلى الاختيار، في محادثة واحدة.</p>
+          </div>
+
+          <div className="rg-showcase-phones" style={css("position:relative; display:flex; gap:28px; justify-content:center; align-items:flex-start;")}>
+
+            {/* screen 1: welcome */}
+            <div className="rg-showcase-item" style={css("margin-top:40px;")}>
+              <div className="rg-showcase-phone" style={css("width:230px; height:470px; border:8px solid #161d29; border-radius:38px; overflow:hidden; background:linear-gradient(180deg, #0B1A1C, #0A0F18 55%); box-shadow:0 24px 60px rgba(0,0,0,0.5); display:flex; flex-direction:column;")}>
+                <div style={css("height:34px; display:flex; align-items:center; justify-content:space-between; padding:0 18px; font-size:10px; color:#8A93A5; flex-shrink:0;")}><span>9:41</span><span>Mivo AI</span></div>
+                <div style={css("flex:1; padding:10px 14px 14px; display:flex; flex-direction:column; align-items:center; text-align:center;")}>
+                  <div style={css("position:relative; width:86px; height:86px; margin:18px 0 18px;")}>
+                    <div style={css("position:absolute; inset:-18px; border-radius:50%; background:radial-gradient(circle, rgba(46,229,124,0.35), transparent 70%); animation:ricoPulse 4s ease-in-out infinite;")}></div>
+                    <svg viewBox="0 0 64 64" aria-hidden="true" style={css("position:relative; width:86px; height:86px;")}><use href="#mivomark"></use></svg>
+                  </div>
+                  <div style={css("font-size:17px; font-weight:700; color:#FFFFFF; margin-bottom:4px;")}>مرحبًا 👋</div>
+                  <div style={css("font-size:12px; color:#94A0B3; margin-bottom:20px;")}>بماذا أساعدك اليوم؟</div>
+                  <div style={css("display:grid; grid-template-columns:1fr 1fr; gap:8px; width:100%;")}>
+                    <div style={css("background:#121C28; border:1px solid rgba(255,255,255,0.07); border-radius:12px; padding:10px 8px; font-size:10.5px; color:#E6E9EF; line-height:1.5;")}>🍽️<br/>مطعم للعائلة</div>
+                    <div style={css("background:#121C28; border:1px solid rgba(255,255,255,0.07); border-radius:12px; padding:10px 8px; font-size:10.5px; color:#E6E9EF; line-height:1.5;")}>☕<br/>مقهى هادئ</div>
+                    <div style={css("background:#121C28; border:1px solid rgba(255,255,255,0.07); border-radius:12px; padding:10px 8px; font-size:10.5px; color:#E6E9EF; line-height:1.5;")}>🛠️<br/>خدمة قريبة</div>
+                    <div style={css("background:#121C28; border:1px solid rgba(255,255,255,0.07); border-radius:12px; padding:10px 8px; font-size:10.5px; color:#E6E9EF; line-height:1.5;")}>🎁<br/>فكرة هدية</div>
+                  </div>
+                  <div style={css("margin-top:auto; width:100%; display:flex; align-items:center; gap:8px; background:#121a26; border:1px solid rgba(46,229,124,0.25); border-radius:999px; padding:6px 6px 6px 12px;")}>
+                    <span style={css("flex:1; text-align:right; color:#6C7688; font-size:11px;")}>اكتب ما تحتاجه…</span>
+                    <span style={css("width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg, #2EE57C, #0E9F8E); display:flex; align-items:center; justify-content:center; flex-shrink:0;")}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#04140A" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path></svg>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div style={css("text-align:center; margin-top:18px;")}>
+                <span style={css("display:inline-block; width:7px; height:7px; border-radius:50%; background:#2EE57C; box-shadow:0 0 8px #2EE57C; vertical-align:middle;")}></span>
+                <span style={css("font-size:15px; font-weight:600; color:#E6E9EF; margin-right:8px;")}>أخبره بما تحتاجه</span>
+              </div>
+            </div>
+
+            {/* screen 2: results */}
+            <div className="rg-showcase-item">
+              <div className="rg-showcase-phone" style={css("width:230px; height:470px; border:8px solid #161d29; border-radius:38px; overflow:hidden; background:#0A0F18; box-shadow:0 30px 70px rgba(0,0,0,0.55), 0 0 0 1px rgba(46,229,124,0.15); display:flex; flex-direction:column;")}>
+                <div style={css("height:34px; display:flex; align-items:center; justify-content:space-between; padding:0 18px; font-size:10px; color:#8A93A5; flex-shrink:0;")}><span>9:42</span><span>Mivo AI</span></div>
+                <div style={css("flex:1; padding:10px 12px 14px; display:flex; flex-direction:column; gap:10px;")}>
+                  <div style={css("align-self:flex-end; background:linear-gradient(135deg, #1c8f4e, #127a6c); color:#EAFBF0; padding:9px 12px; border-radius:14px 14px 4px 14px; font-size:11.5px; line-height:1.6; max-width:85%;")}>أبحث عن مطعم مناسب للعائلة</div>
+                  <div style={css("display:flex; align-items:center; gap:6px;")}>
+                    <svg viewBox="0 0 64 64" aria-hidden="true" style={css("width:20px; height:20px; flex-shrink:0;")}><use href="#mivomark"></use></svg>
+                    <span style={css("font-size:11.5px; color:#E6E9EF;")}>إليك خيارات مناسبة قريبة منك:</span>
+                  </div>
+                  <div style={css("display:flex; gap:10px; align-items:center; background:#121C28; border:1px solid rgba(46,229,124,0.3); border-radius:14px; padding:8px;")}>
+                    <div style={css("width:48px; height:48px; border-radius:10px; background:linear-gradient(135deg, #1F6F46, #0F2A1F); display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0;")}>🍽️</div>
+                    <div style={css("flex:1; min-width:0;")}>
+                      <div style={css("font-size:11.5px; font-weight:600; color:#FFFFFF; margin-bottom:4px;")}>الخيار الأول</div>
+                      <div style={css("display:flex; gap:4px; flex-wrap:wrap;")}>
+                        <span style={css("font-size:9px; color:#6BF3A5; background:rgba(34,197,94,0.12); border-radius:999px; padding:2px 7px;")}>جلسات عائلية</span>
+                        <span style={css("font-size:9px; color:#AEB6C4; background:rgba(255,255,255,0.06); border-radius:999px; padding:2px 7px;")}>قريب</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div style={css("display:flex; gap:10px; align-items:center; background:#121C28; border:1px solid rgba(255,255,255,0.07); border-radius:14px; padding:8px;")}>
+                    <div style={css("width:48px; height:48px; border-radius:10px; background:linear-gradient(135deg, #7A5B1E, #2A2010); display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0;")}>🥘</div>
+                    <div style={css("flex:1; min-width:0;")}>
+                      <div style={css("font-size:11.5px; font-weight:600; color:#FFFFFF; margin-bottom:4px;")}>الخيار الثاني</div>
+                      <div style={css("display:flex; gap:4px; flex-wrap:wrap;")}>
+                        <span style={css("font-size:9px; color:#E8C765; background:rgba(201,162,74,0.14); border-radius:999px; padding:2px 7px;")}>أطباق شعبية</span>
+                        <span style={css("font-size:9px; color:#AEB6C4; background:rgba(255,255,255,0.06); border-radius:999px; padding:2px 7px;")}>مواقف</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div style={css("display:flex; gap:10px; align-items:center; background:#121C28; border:1px solid rgba(255,255,255,0.07); border-radius:14px; padding:8px;")}>
+                    <div style={css("width:48px; height:48px; border-radius:10px; background:linear-gradient(135deg, #1D4E6B, #0F1E2A); display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0;")}>🍕</div>
+                    <div style={css("flex:1; min-width:0;")}>
+                      <div style={css("font-size:11.5px; font-weight:600; color:#FFFFFF; margin-bottom:4px;")}>الخيار الثالث</div>
+                      <div style={css("display:flex; gap:4px; flex-wrap:wrap;")}>
+                        <span style={css("font-size:9px; color:#8CC8F0; background:rgba(75,158,248,0.14); border-radius:999px; padding:2px 7px;")}>ركن للأطفال</span>
+                        <span style={css("font-size:9px; color:#AEB6C4; background:rgba(255,255,255,0.06); border-radius:999px; padding:2px 7px;")}>هادئ</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div style={css("display:flex; gap:6px; flex-wrap:wrap; margin-top:auto;")}>
+                    <span style={css("font-size:10px; color:#E6E9EF; border:1px solid rgba(46,229,124,0.35); border-radius:999px; padding:5px 10px;")}>قارن بينها</span>
+                    <span style={css("font-size:10px; color:#E6E9EF; border:1px solid rgba(255,255,255,0.12); border-radius:999px; padding:5px 10px;")}>خيارات أكثر</span>
+                  </div>
+                </div>
+              </div>
+              <div style={css("text-align:center; margin-top:18px;")}>
+                <span style={css("display:inline-block; width:7px; height:7px; border-radius:50%; background:#2EE57C; box-shadow:0 0 8px #2EE57C; vertical-align:middle;")}></span>
+                <span style={css("font-size:15px; font-weight:600; color:#E6E9EF; margin-right:8px;")}>اطّلع على النتائج</span>
+              </div>
+            </div>
+
+            {/* screen 3: compare & choose */}
+            <div className="rg-showcase-item" style={css("margin-top:40px;")}>
+              <div className="rg-showcase-phone" style={css("width:230px; height:470px; border:8px solid #161d29; border-radius:38px; overflow:hidden; background:#0A0F18; box-shadow:0 24px 60px rgba(0,0,0,0.5); display:flex; flex-direction:column;")}>
+                <div style={css("height:34px; display:flex; align-items:center; justify-content:space-between; padding:0 18px; font-size:10px; color:#8A93A5; flex-shrink:0;")}><span>9:43</span><span>Mivo AI</span></div>
+                <div style={css("flex:1; padding:10px 12px 14px; display:flex; flex-direction:column; gap:10px;")}>
+                  <div style={css("font-size:14px; font-weight:700; color:#FFFFFF;")}>مقارنة الخيارات</div>
+                  <div style={css("background:linear-gradient(180deg, rgba(46,229,124,0.14), rgba(14,159,142,0.06)); border:1px solid rgba(46,229,124,0.4); border-radius:14px; padding:10px;")}>
+                    <div style={css("display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;")}>
+                      <span style={css("font-size:12px; font-weight:600; color:#FFFFFF;")}>الخيار الأول</span>
+                      <span style={css("font-size:9px; font-weight:700; color:#04140A; background:#2EE57C; border-radius:999px; padding:2px 8px;")}>الأنسب لك</span>
+                    </div>
+                    <div style={css("display:flex; flex-direction:column; gap:5px; font-size:10.5px; color:#D6DBE4;")}>
+                      <div style={css("display:flex; justify-content:space-between;")}><span>مناسب للعائلة</span><span style={css("color:#2EE57C;")}>✓</span></div>
+                      <div style={css("display:flex; justify-content:space-between;")}><span>القرب منك</span><span style={css("color:#2EE57C;")}>●●●</span></div>
+                      <div style={css("display:flex; justify-content:space-between;")}><span>الأجواء</span><span style={css("color:#2EE57C;")}>●●○</span></div>
+                    </div>
+                  </div>
+                  <div style={css("background:#121C28; border:1px solid rgba(255,255,255,0.07); border-radius:14px; padding:10px;")}>
+                    <div style={css("font-size:12px; font-weight:600; color:#FFFFFF; margin-bottom:8px;")}>الخيار الثاني</div>
+                    <div style={css("display:flex; flex-direction:column; gap:5px; font-size:10.5px; color:#AEB6C4;")}>
+                      <div style={css("display:flex; justify-content:space-between;")}><span>مناسب للعائلة</span><span style={css("color:#2EE57C;")}>✓</span></div>
+                      <div style={css("display:flex; justify-content:space-between;")}><span>القرب منك</span><span style={css("color:#C9A24A;")}>●●○</span></div>
+                      <div style={css("display:flex; justify-content:space-between;")}><span>الأجواء</span><span style={css("color:#C9A24A;")}>●●●</span></div>
+                    </div>
+                  </div>
+                  <div style={css("display:flex; align-items:flex-start; gap:6px; background:#0F1722; border-radius:12px; padding:9px 10px;")}>
+                    <svg viewBox="0 0 64 64" aria-hidden="true" style={css("width:18px; height:18px; flex-shrink:0; margin-top:1px;")}><use href="#mivomark"></use></svg>
+                    <span style={css("font-size:10.5px; color:#AEB6C4; line-height:1.6;")}>الخيار الأول هو الأقرب ويناسب العائلات.</span>
+                  </div>
+                  <div style={css("margin-top:auto; text-align:center; background:linear-gradient(135deg, #2EE57C, #0E9F8E); color:#04140A; font-weight:700; font-size:12px; border-radius:12px; padding:11px;")}>اختر هذا الخيار</div>
+                </div>
+              </div>
+              <div style={css("text-align:center; margin-top:18px;")}>
+                <span style={css("display:inline-block; width:7px; height:7px; border-radius:50%; background:#2EE57C; box-shadow:0 0 8px #2EE57C; vertical-align:middle;")}></span>
+                <span style={css("font-size:15px; font-weight:600; color:#E6E9EF; margin-right:8px;")}>اختر ما يناسبك</span>
+              </div>
+            </div>
+
           </div>
         </section>
 
@@ -407,6 +571,31 @@ export default function App() {
           </div>
         </section>
 
+        {/* ADS GALLERY */}
+        <section id="campaigns" style={css("max-width:1200px; margin:0 auto; padding:56px 40px;")}>
+          <div style={css("text-align:center; margin-bottom:44px;")}>
+            <div style={css("font-size:13px; letter-spacing:0.28em; color:#C9A24A; text-transform:uppercase; margin-bottom:12px;")}>Campaigns</div>
+            <h2 className="rg-section-h2" style={css("font-size:34px; font-weight:700; color:#FFFFFF; margin:0 0 10px;")}>حملات Mivo AI</h2>
+            <p style={css("font-size:16px; color:#AEB6C4; margin:0;")}>تصاميم جاهزة للنشر بمقاس المنشور والستوري.</p>
+          </div>
+          <div className="rg-ads-grid" style={css("display:grid; grid-template-columns:repeat(3,1fr); gap:24px;")}>
+            {ADS.map((ad) => (
+              <div key={ad.name} style={css("background:#0C1420; border:1px solid rgba(255,255,255,0.07); border-radius:20px; padding:14px; display:flex; flex-direction:column; gap:14px;")}>
+                <a href={`/ads/mivo-${ad.name}-post.png`} target="_blank" rel="noopener" style={css("display:block; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.06);")}>
+                  <img src={`/ads/mivo-${ad.name}-post.png`} alt={`إعلان Mivo AI: ${ad.title}`} width="1080" height="1080" loading="lazy" style={css("display:block; width:100%; height:auto;")} />
+                </a>
+                <div style={css("display:flex; flex-direction:column; align-items:flex-start; gap:12px; padding:0 4px 4px;")}>
+                  <span style={css("font-size:15px; font-weight:600; color:#FFFFFF;")}>{ad.title}</span>
+                  <div style={css("display:flex; gap:8px; flex-shrink:0;")}>
+                    <a href={`/ads/mivo-${ad.name}-post.png`} download style={css("font-size:12.5px; color:#E6E9EF; border:1px solid rgba(46,229,124,0.35); border-radius:999px; padding:6px 12px;")}>منشور</a>
+                    <a href={`/ads/mivo-${ad.name}-story.png`} download style={css("font-size:12.5px; color:#E6E9EF; border:1px solid rgba(255,255,255,0.14); border-radius:999px; padding:6px 12px;")}>ستوري</a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* SOLUTIONS */}
         <section id="solutions" style={css("max-width:1200px; margin:0 auto; padding:56px 40px;")}>
           <div style={css("text-align:center; margin-bottom:44px;")}>
@@ -467,6 +656,7 @@ export default function App() {
               <div style={css("display:flex; flex-direction:column; gap:10px; font-size:14px;")}>
                 <a href="#mivo" style={css("color:#9AA4B4;")}>تعرف على Mivo AI</a>
                 <a href="#how-it-works" style={css("color:#9AA4B4;")}>كيف يعمل</a>
+                <a href="#campaigns" style={css("color:#9AA4B4;")}>حملات Mivo AI</a>
               </div>
             </div>
             <div>
